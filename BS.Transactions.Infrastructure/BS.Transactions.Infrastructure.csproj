@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BS.Common.Infrastructure\BS.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\BS.Transactions.Core\BS.Transactions.Core.csproj" />
+  </ItemGroup>
+
 </Project>
