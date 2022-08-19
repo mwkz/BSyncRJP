@@ -1,10 +1,19 @@
+using BS.Security.Infrastructure.Repositories.DBContexts;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Additional configuration is required to successfully run gRPC on macOS.
 // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
+builder.Services.AddDbContext<SecurityDBContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("MainDBConnection"));
+});
 
-// Add services to the container.
+//Migrate
+
 builder.Services.AddGrpc();
+
 
 var app = builder.Build();
 

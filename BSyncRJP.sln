@@ -15,21 +15,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Accounts.Core", "BS.Acco
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Accounts.Infrastructure", "BS.Accounts.Infrastructure\BS.Accounts.Infrastructure.csproj", "{BE329188-8B94-40D2-BC37-CBCF4676AB02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.APIGateway", "BS.APIGateway\BS.APIGateway.csproj", "{62C52906-5DA9-4342-845F-53D61B587BB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.APIGateway", "BS.APIGateway\BS.APIGateway.csproj", "{62C52906-5DA9-4342-845F-53D61B587BB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Accounts.Service", "BS.Accounts.Service\BS.Accounts.Service.csproj", "{C3030039-1549-425F-92F9-70BDD8527071}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Accounts.Service", "BS.Accounts.Service\BS.Accounts.Service.csproj", "{C3030039-1549-425F-92F9-70BDD8527071}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Transactions.Service", "BS.Transactions.Service\BS.Transactions.Service.csproj", "{9F66591B-DAA5-4106-B28F-0086B38EC0D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Transactions.Service", "BS.Transactions.Service\BS.Transactions.Service.csproj", "{9F66591B-DAA5-4106-B28F-0086B38EC0D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Transactions.Core", "BS.Transactions.Core\BS.Transactions.Core.csproj", "{1515C464-A17D-4C5C-BCDB-F8B42A42537E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Transactions.Core", "BS.Transactions.Core\BS.Transactions.Core.csproj", "{1515C464-A17D-4C5C-BCDB-F8B42A42537E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Transactions.Infrastructure", "BS.Transactions.Infrastructure\BS.Transactions.Infrastructure.csproj", "{4E45B151-176F-40E6-9816-6586C3143B0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Transactions.Infrastructure", "BS.Transactions.Infrastructure\BS.Transactions.Infrastructure.csproj", "{4E45B151-176F-40E6-9816-6586C3143B0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Security.Core", "BS.Security.Core\BS.Security.Core.csproj", "{D7967294-6A2A-497B-8BE4-559977E87C9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Security.Core", "BS.Security.Core\BS.Security.Core.csproj", "{D7967294-6A2A-497B-8BE4-559977E87C9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Security.Infrastructure", "BS.Security.Infrastructure\BS.Security.Infrastructure.csproj", "{69C66CF5-42A9-4552-8061-33BFE82F63B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Security.Infrastructure", "BS.Security.Infrastructure\BS.Security.Infrastructure.csproj", "{69C66CF5-42A9-4552-8061-33BFE82F63B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Secutiry.Service", "BS.Secutiry.Service\BS.Secutiry.Service.csproj", "{FEEBE87D-7F63-4145-B7D5-51CBA5E7814E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Secutiry.Service", "BS.Secutiry.Service\BS.Secutiry.Service.csproj", "{FEEBE87D-7F63-4145-B7D5-51CBA5E7814E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{83E5B523-EA9B-4BF8-B3DF-FF15E1A4D0F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Common.Core", "BS.Common.Core\BS.Common.Core.csproj", "{26B281D7-BD1F-43BF-8272-58AACAF0893D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Common.Infrastructure", "BS.Common.Infrastructure\BS.Common.Infrastructure.csproj", "{817B5109-63B0-44F2-96BE-EBBD9888B3F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +83,14 @@ Global
 		{FEEBE87D-7F63-4145-B7D5-51CBA5E7814E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEEBE87D-7F63-4145-B7D5-51CBA5E7814E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEEBE87D-7F63-4145-B7D5-51CBA5E7814E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26B281D7-BD1F-43BF-8272-58AACAF0893D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B281D7-BD1F-43BF-8272-58AACAF0893D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B281D7-BD1F-43BF-8272-58AACAF0893D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B281D7-BD1F-43BF-8272-58AACAF0893D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{817B5109-63B0-44F2-96BE-EBBD9888B3F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817B5109-63B0-44F2-96BE-EBBD9888B3F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817B5109-63B0-44F2-96BE-EBBD9888B3F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817B5109-63B0-44F2-96BE-EBBD9888B3F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +106,8 @@ Global
 		{D7967294-6A2A-497B-8BE4-559977E87C9D} = {38DE8EFF-CCE0-4385-B3B0-16007AF08062}
 		{69C66CF5-42A9-4552-8061-33BFE82F63B7} = {38DE8EFF-CCE0-4385-B3B0-16007AF08062}
 		{FEEBE87D-7F63-4145-B7D5-51CBA5E7814E} = {38DE8EFF-CCE0-4385-B3B0-16007AF08062}
+		{26B281D7-BD1F-43BF-8272-58AACAF0893D} = {83E5B523-EA9B-4BF8-B3DF-FF15E1A4D0F1}
+		{817B5109-63B0-44F2-96BE-EBBD9888B3F3} = {83E5B523-EA9B-4BF8-B3DF-FF15E1A4D0F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {52EC670E-7A45-4DF1-A757-D25B2075B390}

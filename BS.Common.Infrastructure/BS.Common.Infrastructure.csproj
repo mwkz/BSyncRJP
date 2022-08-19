@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.8" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BS.Accounts.Core\BS.Accounts.Core.csproj" />
-    <ProjectReference Include="..\BS.Common.Infrastructure\BS.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\BS.Common.Core\BS.Common.Core.csproj" />
   </ItemGroup>
 
 </Project>
