@@ -10,5 +10,6 @@ namespace BS.Transactions.Core.Repositories
 {
     public interface IAccountsTransactionsRepository : IRepository<AccountTransaction>
     {
+        IQueryable<AccountTransaction> GetAccountTransactions(int accountId);
     }
 }

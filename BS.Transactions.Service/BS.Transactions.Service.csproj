@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\AccountsTransactions.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -18,13 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Protos\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\BS.Common.Infrastructure\BS.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\BS.Transactions.Infrastructure\BS.Transactions.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BS.Common.Infrastructure\BS.Common.Infrastructure.csproj" />
-    <ProjectReference Include="..\BS.Transactions.Infrastructure\BS.Transactions.Infrastructure.csproj" />
+    <Protobuf Include="Protos\AccountsTransactions.proto" />
   </ItemGroup>
 
 </Project>

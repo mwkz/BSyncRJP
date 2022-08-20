@@ -15,5 +15,10 @@ namespace BS.Transactions.Infrastructure.Repositories
         public AccountsTransactionsRepository(DbContext dbContext) 
             : base(dbContext)
         { }
+
+        public IQueryable<AccountTransaction> GetAccountTransactions(int accountId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

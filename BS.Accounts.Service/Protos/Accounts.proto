@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "BS.Accounts.Service";
+
+package account;
+
+service Account {
+	rpc AddAccount (AddAccountRequest) returns (AddAccountReply);
+	rpc GetAccounts (GetAccountsRequest) returns (GetAccountsReply);
+	rpc GetAccount (GetAccountRequest) returns (GetAccountReply);
+}
+
+message AddAccountRequest {
+	int32 userId = 1;
+	string accountNo = 2;
+	string name = 3;
+	float initialBalance = 4;
+	int32 customerId = 5;
+}
+
+message AddAccountReply {
+	int32 id = 1;
+	string accountNp = 2;
+	string name = 3;
+	float balance = 4;
+	int32 customerId = 5;
+	int32 createdByUserId = 6;
+	google.protobuf.Timestamp createdDate = 7;
+	int32 updatedByUserId = 8;
+	google.protobuf.Timestamp updatedDate = 9;
+	int32 userId = 10;
+}
+
+message GetAccountsRequest {
+	int32 userId = 1;
+}
+
+message GetAccountsReply {
+	message GetAccountsReplyEntry {
+		int32 id = 1;
+		string accountNp = 2;
+		string name = 3;
+		float balance = 4;
+		int32 customerId = 5;
+		int32 createdByUserId = 6;
+		google.protobuf.Timestamp createdDate = 7;
+		int32 updatedByUserId = 8;
+		google.protobuf.Timestamp updatedDate = 9;
+	}
+
+	int32 userId = 1;
+	repeated GetAccountsReplyEntry accounts = 2;
+}
+
+message GetAccountRequest {
+	int32 userId = 1;
+	int32 accountId = 2;
+}
+
+message GetAccountReply {
+	int32 id = 1;
+	string accountNp = 2;
+	string name = 3;
+	float balance = 4;
+	int32 customerId = 5;
+	int32 createdByUserId = 6;
+	google.protobuf.Timestamp createdDate = 7;
+	int32 updatedByUserId = 8;
+	google.protobuf.Timestamp updatedDate = 9;
+	int32 userId = 10;
+}
+

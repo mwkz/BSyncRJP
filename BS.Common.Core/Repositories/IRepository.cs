@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BS.Common.Core.Repositories
 {
-    public interface IRepository<T>
+    public interface IRepository<T> 
         where T : class
     {
-        IEnumerable<T> Get();
-        Task<T> Add(T entity);
-        Task<T> Update(T entity);
-        Task<T> Delete(T entity);
+        IQueryable<T> Get();
+        T Add(T entity);
+        T Update(T entity);
+        T Delete(T entity);
     }
 }

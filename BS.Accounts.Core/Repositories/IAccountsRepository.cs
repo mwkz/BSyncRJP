@@ -10,5 +10,6 @@ namespace BS.Accounts.Core.Repositories
 {
     public interface IAccountsRepository : IRepository<Account>
     {
+        Task<bool> AccountExists(string? accountNo, CancellationToken token = default);
     }
 }

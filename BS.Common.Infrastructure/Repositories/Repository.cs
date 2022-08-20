@@ -13,49 +13,38 @@ namespace BS.Common.Infrastructure.Repositories
     {
         public Repository(DbContext dbContext)
         {
-            DbContext = dbContext;
+            DbContext = dbContext;            
         }
 
         public DbContext DbContext { get; }
 
-        public async Task<T> Add(T entity)
+        public T Add(T entity)
         {
             DbContext.Set<T>().Add(entity);
-            await DbContext.SaveChangesAsync();
-            DbContext.Entry(entity).Reload();
             return entity;
         }
 
-        public async Task<T> Delete(T entity)
+        public T Delete(T entity)
         {
             var set = DbContext.Set<T>();
 
             if (DbContext.Entry(entity).State == EntityState.Detached)
                 set.Attach(entity);
 
-            set.Remove(entity);
-            await DbContext.SaveChangesAsync();
-
             return entity;
         }
 
-        public IEnumerable<T> Get()
+        public IQueryable<T> Get()
         {
             return DbContext.Set<T>().AsQueryable();
         }
 
-        public async Task<T> Update(T entity)
+        public T Update(T entity)
         {
             var set = DbContext.Set<T>();
-
             if (DbContext.Entry(entity).State == EntityState.Detached)
                 set.Update(entity);
-
-            await DbContext.SaveChangesAsync();
-            DbContext.Entry(entity).Reload();
-
             return entity;
-
         }
     }
 }

@@ -13,7 +13,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Protos\Accounts.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,13 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Protos\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\BS.Accounts.Infrastructure\BS.Accounts.Infrastructure.csproj" />
+    <ProjectReference Include="..\BS.Common.Infrastructure\BS.Common.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BS.Accounts.Infrastructure\BS.Accounts.Infrastructure.csproj" />
-    <ProjectReference Include="..\BS.Common.Infrastructure\BS.Common.Infrastructure.csproj" />
+    <Protobuf Include="Protos\Accounts.proto" />
   </ItemGroup>
 
 </Project>
