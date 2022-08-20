@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BS.Security.Core.Repositories
+namespace BS.Transactions.Core.DTO
 {
-    public interface IUsersRepository
+    public class GetAccountTransactionsRequest
     {
-
+        public int AccountId { get; set; }
     }
 }

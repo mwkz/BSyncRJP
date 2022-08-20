@@ -19,7 +19,14 @@ namespace BS.Accounts.Infrastructure.Repositories.Configuration
 
             builder.Property(a => a.Name)
                 .IsRequired()
-                .HasMaxLength(100);                        
+                .HasMaxLength(100);
+
+            builder.Property(a => a.AccountNo)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+            builder.HasIndex(a => a.AccountNo)
+                .IsUnique();
                 
         }
     }

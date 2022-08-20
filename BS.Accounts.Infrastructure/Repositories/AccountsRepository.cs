@@ -14,8 +14,12 @@ namespace BS.Accounts.Infrastructure.Repositories
     {
         public AccountsRepository(DbContext dbContext) 
             : base(dbContext)
-        { }
+        {
+        }
 
-
+        public async Task<bool> AccountExists(string? accountNo, CancellationToken token = default)
+        {
+            return await DbContext.Set<Account>().AnyAsync(a => a.AccountNo == accountNo, token);
+        }
     }
 }
