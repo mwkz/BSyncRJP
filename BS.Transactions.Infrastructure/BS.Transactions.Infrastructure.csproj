@@ -9,11 +9,23 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.18.0" />
+    <PackageReference Include="Grpc.Net.ClientFactory" Version="2.40.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.40.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BS.Common.Infrastructure\BS.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\BS.Transactions.Core\BS.Transactions.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\BS.Accounts.Service\Protos\Accounts.proto" GrpcServices="Client">
+      <Link>Protos\Accounts.proto</Link>
+    </Protobuf>
   </ItemGroup>
 
 </Project>

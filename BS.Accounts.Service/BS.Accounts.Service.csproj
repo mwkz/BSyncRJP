@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\Accounts.proto" />
+    <Protobuf Include="Protos\Accounts.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>

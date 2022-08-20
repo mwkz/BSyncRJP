@@ -1,23 +1,22 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 
 option csharp_namespace = "BS.Security.Service";
 
 package security;
 
 service Security {
-	rpc GetUser (GetUserRequest) returns (GetUserReply);
+	rpc AuthenticaUser (AuthenticateUserRequest) returns (AuthenticateUserReply);
+} 
+
+message AuthenticateUserRequest {
+	string username = 1;	
+	string password = 2;
 }
 
-message GetUserRequest {
-	int32 userId = 1;	
-}
-
-message GetUserReply {
-	int32 id = 1;
+message AuthenticateUserReply {
+	google.protobuf.Int32Value id = 1;
 	string username = 2;
-	string enabled = 3;
-	google.protobuf.Timestamp createdDate = 4;
-	google.protobuf.Timestamp updatedDate = 5;
+	bool authenticated = 3;
 }

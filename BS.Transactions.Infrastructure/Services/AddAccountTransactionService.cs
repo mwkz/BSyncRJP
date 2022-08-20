@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BS.Common.Core.Services;
 using BS.Common.Infrastructure.Services;
+using BS.Transactions.Core.Clients;
 using BS.Transactions.Core.DTO;
 using BS.Transactions.Core.Models;
 using BS.Transactions.Core.Repositories;
@@ -18,15 +19,18 @@ namespace BS.Transactions.Infrastructure.Services
     public class AddAccountTransactionService : BusinessService<AddAccountTransactionRequest, AddAccountTransactionResponse>, IAddAccountTransactionService
     {
         private readonly IAccountsTransactionsUnitOfWork accountsTransactionsUnitOfWork;
+        private readonly IAccountsServiceClient accountsServiceClient;
         private readonly IMapper mapper;
 
         public AddAccountTransactionService(IEnumerable<IValidator<AddAccountTransactionRequest>> validators, 
                                             IAccountsTransactionsUnitOfWork accountsTransactionsUnitOfWork,
+                                            IAccountsServiceClient accountsServiceClient,
                                             IMapper mapper,
                                             ILogger<AddAccountTransactionService> logger) 
             : base(validators, logger)
         {
             this.accountsTransactionsUnitOfWork = accountsTransactionsUnitOfWork;
+            this.accountsServiceClient = accountsServiceClient;
             this.mapper = mapper;
         }
 
@@ -52,7 +56,11 @@ namespace BS.Transactions.Infrastructure.Services
 
             accountsTransactionsUnitOfWork.AccountsTransactions.Add(transaction);
 
-            await accountsTransactionsUnitOfWork.SaveChanges(token);
+            var balance = accountsTransactionsUnitOfWork.AccountsBalances.Get().First(b => b.AccountId == request.Request.AccountId);
+            balance.Balance += request.Request.Value;
+
+            await accountsServiceClient.NotifyAccountBalanceUpdated(request.Request.Value, request.Request.AccountId).ConfigureAwait(false);
+            await accountsTransactionsUnitOfWork.SaveChanges(token).ConfigureAwait(false);
 
             return mapper.Map<AccountTransaction, AddAccountTransactionResponse>(transaction);
         }

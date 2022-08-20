@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BS.Security.Core.DTO
 {
-    public class GetUserRequest
+    public class AuthenticateUserRequest
     {
-        public int UserId { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
     }
 }

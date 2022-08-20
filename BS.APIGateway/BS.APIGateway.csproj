@@ -9,8 +9,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BS.Transactions.Service\BS.Transactions.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\BS.Accounts.Service\Protos\Accounts.proto" GrpcServices="Client">
+      <Link>Protos\Accounts.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\BS.Secutiry.Service\Protos\Security.proto" GrpcServices="Client">
+      <Link>Protos\Security.proto</Link>
+    </Protobuf>
+    <Protobuf Include="..\BS.Transactions.Service\Protos\AccountsTransactions.proto" GrpcServices="Client">
+      <Link>Protos\AccountsTransactions.proto</Link>
+    </Protobuf>
   </ItemGroup>
 
 </Project>

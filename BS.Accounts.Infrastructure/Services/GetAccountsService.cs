@@ -24,7 +24,7 @@ namespace BS.Accounts.Infrastructure.Services
         public GetAccountsService(IEnumerable<IValidator<GetAccountsRequest>> validators, 
                                   IAccountsUnitOfWork accountsUnitOfWork,
                                   IMapper  mapper,
-                                  ILogger logger) 
+                                  ILogger<GetAccountsService> logger) 
             : base(validators, logger)
         {
             this.accountsUnitOfWork = accountsUnitOfWork;
@@ -33,10 +33,8 @@ namespace BS.Accounts.Infrastructure.Services
 
         protected override async Task<IEnumerable<GetAccountsResponse>> ExecuteRequest(BusinessServiceRequest<GetAccountsRequest> request, CancellationToken token = default)
         {
-            Logger.LogInformation("Reading all accounts.");
-
             var accounts = await accountsUnitOfWork.Accounts.Get()
-                                             .AsNoTracking().ToListAsync(token);
+                                             .AsNoTracking().ToListAsync(token).ConfigureAwait(false);
 
             return mapper.Map<IEnumerable<Account>, IEnumerable<GetAccountsResponse>>(accounts);
             

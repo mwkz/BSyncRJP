@@ -24,5 +24,9 @@ namespace BS.Transactions.Core.Models
 
         public DateTime UpdatedDate { get; set; }
 
+        public AccountBalance AccountBalance { get; set; }
+
+        
+
     }
 }
