@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BS.Accounts.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace BS.Accounts.Infrastructure.Repositories.DBContexts
         public AccountsDBContext(DbContextOptions<AccountsDBContext> options)
             : base(options)
         { }
+
+        public virtual DbSet<Account> Accounts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

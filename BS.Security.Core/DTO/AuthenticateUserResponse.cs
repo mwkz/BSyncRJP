@@ -10,8 +10,8 @@ namespace BS.Security.Core.DTO
     {
         public bool Authenticated { get; set; }
 
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
-        public string? Username { get; set; }
+        public string Username { get; set; } = "";
     }
 }

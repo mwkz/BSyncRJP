@@ -19,16 +19,13 @@ namespace BS.Security.Infrastructure.Services
     public class AuthenticateUserService : BusinessService<AuthenticateUserRequest, AuthenticateUserResponse>, IAuthenticateUserService
     {
         private readonly ISecurityUnitOfWork securityUnitOfWork;
-        private readonly IMapper mapper;
-
+     
         public AuthenticateUserService(IEnumerable<IValidator<AuthenticateUserRequest>> validators, 
                               ISecurityUnitOfWork securityUnitOfWork,
-                              IMapper mapper,
                               ILogger<AuthenticateUserService> logger) 
             : base(validators, logger)
         {
             this.securityUnitOfWork = securityUnitOfWork;
-            this.mapper = mapper;
         }
 
         protected override async Task<AuthenticateUserResponse> ExecuteRequest(BusinessServiceRequest<AuthenticateUserRequest> request, CancellationToken token = default)

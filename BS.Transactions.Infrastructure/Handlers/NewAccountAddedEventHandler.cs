@@ -3,6 +3,7 @@ using BS.Transactions.Core.DTO;
 using BS.Transactions.Core.Events;
 using BS.Transactions.Core.Handlers;
 using BS.Transactions.Core.Models;
+using BS.Transactions.Core.Repositories;
 using BS.Transactions.Core.Services;
 using BS.Transactions.Infrastructure.Repositories;
 using System;
@@ -15,10 +16,10 @@ namespace BS.Transactions.Infrastructure.Handlers
 {
     public class NewAccountAddedEventHandler : INewAccountAddedEventHandler
     {
-        private readonly AccountsTransactionsUnitOfWork accountsTransactionsUnitOfWork;
+        private readonly IAccountsTransactionsUnitOfWork accountsTransactionsUnitOfWork;
         private readonly IAddAccountTransactionService addAccountTransactionService;
 
-        public NewAccountAddedEventHandler(AccountsTransactionsUnitOfWork accountsTransactionsUnitOfWork, IAddAccountTransactionService addAccountTransactionService)
+        public NewAccountAddedEventHandler(IAccountsTransactionsUnitOfWork accountsTransactionsUnitOfWork, IAddAccountTransactionService addAccountTransactionService)
         {
             this.accountsTransactionsUnitOfWork = accountsTransactionsUnitOfWork;
             this.addAccountTransactionService = addAccountTransactionService;
@@ -40,12 +41,14 @@ namespace BS.Transactions.Infrastructure.Handlers
 
                 await accountsTransactionsUnitOfWork.SaveChanges(token);
 
-                await addAccountTransactionService.Execute(new BusinessServiceRequest<AddAccountTransactionRequest>
-                    (
-                        new AddAccountTransactionRequest() {  AccountId = e.AccountId, IsInitial = true, Value = e.InitialBalance},
-                        e.UserId
-                    ), token);
-
+                if (e.InitialBalance != 0)
+                {
+                    await addAccountTransactionService.Execute(new BusinessServiceRequest<AddAccountTransactionRequest>
+                        (
+                            new AddAccountTransactionRequest() { AccountId = e.AccountId, IsInitial = true, Value = e.InitialBalance },
+                            e.UserId
+                        ), token);
+                }
 
                 await transaction.Complete(token);
             }

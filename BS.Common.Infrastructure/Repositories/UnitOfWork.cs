@@ -12,7 +12,6 @@ namespace BS.Common.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-
         public UnitOfWork(DbContext dbContext)
         {
             DbContext = dbContext;

@@ -37,7 +37,7 @@ namespace BS.Accounts.Service.Services
 
             var result = await addAccountService.Execute(businessRequest, context.CancellationToken);
 
-            if (result.Succeeded == false || result.Response != null)
+            if (result.Succeeded == false || result.Response == null)
             {
                 var response = new AddAccountReply();
                 response.Success = false;
@@ -47,6 +47,8 @@ namespace BS.Accounts.Service.Services
             else
             {
                 var response = mapper.Map<DTO.AddAccountResponse, AddAccountReply>(result.Response);
+                response.UserId = request.UserId;
+                response.Success = true;
                 return response;
             }
 

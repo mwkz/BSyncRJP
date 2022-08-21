@@ -11,7 +11,7 @@ namespace BS.APIGateway.Extensions
             {
                 throw new ArgumentNullException(nameof(principal));
             }
-            var claim = principal.FindFirst(ClaimTypes.NameIdentifier);
+            var claim = principal.FindFirst("id");
 
             if (claim == null)
                 throw new InvalidOperationException();

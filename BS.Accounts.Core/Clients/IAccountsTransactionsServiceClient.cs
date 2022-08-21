@@ -8,6 +8,6 @@ namespace BS.Accounts.Core.Clients
 {
     public interface IAccountsTransactionsServiceClient
     {
-        Task NotifyAccountAdded(int accountId, decimal initialBalance, CancellationToken token = default);
+        Task NotifyAccountAdded(int accountId, decimal initialBalance, int userId, CancellationToken token = default);
     }
 }

@@ -15,17 +15,18 @@ namespace BS.APIGateway.Controllers
     [ApiController]
     public class SecurityController : ControllerBase
     {
-        private readonly string address;        
-        private readonly WebApplicationBuilder builder;
+        private readonly string address;
+        private readonly ConfigurationManager configuration;
 
-        public SecurityController(IConfiguration configuration, WebApplicationBuilder builder)
+        public SecurityController(ConfigurationManager configuration)
         {
-            address = configuration.GetValue<string>("SecurityTransactionsGRPCAddress");            
-            this.builder = builder;
+            
+            address = configuration["SecurityTransactionsGRPCAddress"];
+            this.configuration = configuration;
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody] AuthenticationRequest request, CancellationToken cancellationToken)
         {
             AuthenticationResult user;
@@ -46,11 +47,11 @@ namespace BS.APIGateway.Controllers
                     };                    
             }
 
-            var issuer = builder.Configuration["Jwt:Issuer"];
+            var issuer = configuration["Jwt:Issuer"];
 
-            var audience = builder.Configuration["Jwt:Audience"];
+            var audience = configuration["Jwt:Audience"];
 
-            var key = Encoding.ASCII.GetBytes (builder.Configuration["Jwt:Key"]);
+            var key = Encoding.ASCII.GetBytes (configuration["Jwt:Key"]);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

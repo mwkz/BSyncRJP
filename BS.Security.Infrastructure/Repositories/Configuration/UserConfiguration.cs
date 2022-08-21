@@ -27,6 +27,29 @@ namespace BS.Security.Infrastructure.Repositories.Configuration
                 .IsRequired()
                 .HasMaxLength(128);
 
+            builder.HasData(
+                new User { 
+                    Id = 1,
+                    Username = "admin", 
+                    Password = "admin", 
+                    CreatedDate = DateTime.UtcNow, 
+                    UpdatedDate = DateTime.UtcNow, 
+                    Enabled = true });
+
+
+            builder.HasData(
+                new User
+                {
+                    Id = 2,
+                    Username = "user",
+                    Password = "user",
+                    CreatedDate = DateTime.UtcNow,
+                    UpdatedDate = DateTime.UtcNow,
+                    Enabled = true
+                });
+
+
+
         }
     }
 }

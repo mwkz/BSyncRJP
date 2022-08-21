@@ -43,7 +43,7 @@ namespace BS.Transactions.Infrastructure.Services
             transaction.CreatedByUserId = request.UserId;
             transaction.UpdatedByUserId = request.UserId;
 
-            if (request.Request.Value < 0)
+            if (request.Request.Value > 0)
             {
                 transaction.Credit = Math.Abs(request.Request.Value);
                 transaction.Debit = 0;
@@ -59,7 +59,9 @@ namespace BS.Transactions.Infrastructure.Services
             var balance = accountsTransactionsUnitOfWork.AccountsBalances.Get().First(b => b.AccountId == request.Request.AccountId);
             balance.Balance += request.Request.Value;
 
-            await accountsServiceClient.NotifyAccountBalanceUpdated(request.Request.Value, request.Request.AccountId).ConfigureAwait(false);
+            if (request.Request.IsInitial == false)
+                await accountsServiceClient.NotifyAccountBalanceUpdated(request.Request.Value, request.Request.AccountId, request.UserId, token).ConfigureAwait(false);
+
             await accountsTransactionsUnitOfWork.SaveChanges(token).ConfigureAwait(false);
 
             return mapper.Map<AccountTransaction, AddAccountTransactionResponse>(transaction);

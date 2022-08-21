@@ -3,6 +3,7 @@ using System;
 using BS.Security.Infrastructure.Repositories.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BS.Security.Infrastructure.Migrations
 {
     [DbContext(typeof(SecurityDBContext))]
-    partial class SecurityDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220821084128_AddInitialUsersData")]
+    partial class AddInitialUsersData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");

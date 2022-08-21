@@ -16,6 +16,7 @@ namespace BS.Transactions.Infrastructure.Repositories.Configuration
             builder.ToTable(nameof(AccountBalance));
 
             builder.HasKey(b => b.AccountId);
+                        
 
             builder.HasMany(b => b.Transactions)
                    .WithOne(t => t.AccountBalance)

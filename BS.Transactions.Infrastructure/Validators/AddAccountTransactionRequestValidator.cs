@@ -13,7 +13,7 @@ namespace BS.Transactions.Infrastructure.Validators
     {
         public AddAccountTransactionRequestValidator()
         {
-            RuleFor(r => r.Value).NotEqual(0).WithMessage("Transaction balanace must different than 0.");
+            RuleFor(r => r.Value).NotEqual(0).WithMessage("Transaction value must different than 0.");
         }
     }
 }

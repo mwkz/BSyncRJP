@@ -37,7 +37,12 @@ namespace BS.Transactions.Service.Services
             var result = await addAccountTransactionService.Execute(businessRequest, context.CancellationToken);
 
             if (result.Succeeded && result.Response != null)
-                return mapper.Map<DTO.AddAccountTransactionResponse, AddAccountTransactionResponse>(result.Response);
+            {
+                var response = mapper.Map<DTO.AddAccountTransactionResponse, AddAccountTransactionResponse>(result.Response);
+                response.Success = true;
+                response.UserId = request.UserId;
+                return response;
+            }
             else
             {
                 var response = new AddAccountTransactionResponse();

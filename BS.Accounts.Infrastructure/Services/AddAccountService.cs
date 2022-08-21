@@ -48,11 +48,9 @@ namespace BS.Accounts.Infrastructure.Services
                 accountsUnitOfWork.Accounts.Add(account);
                 await accountsUnitOfWork.SaveChanges(token);
 
-                if (request.Request.InitialBalance != 0)
-                {
-                    //This should be fire and foreget
-                    await transactionsServiceClient.NotifyAccountAdded(account.Id, request.Request.InitialBalance, token);
-                }
+
+                //This should be fire and foreget
+                await transactionsServiceClient.NotifyAccountAdded(account.Id, request.Request.InitialBalance, request.UserId, token);
 
                 await transaction.Complete(token);
                 return mapper.Map<Account, AddAccountResponse>(account);                

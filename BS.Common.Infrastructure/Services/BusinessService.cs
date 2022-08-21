@@ -39,8 +39,16 @@ namespace BS.Common.Infrastructure.Services
                 }
             }
 
-            var response =  await ExecuteRequest(request, token).ConfigureAwait(false);
-            return new BusinessServiceResponse<Response>(response, succeeded, validation);
+            if (succeeded)
+            { 
+                var response = await ExecuteRequest(request, token).ConfigureAwait(false);
+                return new BusinessServiceResponse<Response>(response, succeeded, validation);
+            }
+            else
+            {
+                return new BusinessServiceResponse<Response>(default, succeeded, validation);
+            }
+
         }
 
         /// <summary>
