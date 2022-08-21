@@ -10,6 +10,7 @@ service Account {
 	rpc AddAccount (AddAccountRequest) returns (AddAccountReply);
 	rpc GetAccounts (GetAccountsRequest) returns (GetAccountsReply);
 	rpc GetAccount (GetAccountRequest) returns (GetAccountReply);
+	rpc AccountBalanceChanged (AccountBalanceChangedRequest) returns (Empty);
 }
 
 message AddAccountRequest {
@@ -22,7 +23,7 @@ message AddAccountRequest {
 
 message AddAccountReply {
 	int32 id = 1;
-	string accountNp = 2;
+	string accountNo = 2;
 	string name = 3;
 	float balance = 4;
 	int32 customerId = 5;
@@ -31,6 +32,9 @@ message AddAccountReply {
 	int32 updatedByUserId = 8;
 	google.protobuf.Timestamp updatedDate = 9;
 	int32 userId = 10;
+
+	repeated string errors = 11;
+	bool success = 12;
 }
 
 message GetAccountsRequest {
@@ -40,7 +44,7 @@ message GetAccountsRequest {
 message GetAccountsReply {
 	message GetAccountsReplyEntry {
 		int32 id = 1;
-		string accountNp = 2;
+		string accountNo = 2;
 		string name = 3;
 		float balance = 4;
 		int32 customerId = 5;
@@ -61,7 +65,7 @@ message GetAccountRequest {
 
 message GetAccountReply {
 	int32 id = 1;
-	string accountNp = 2;
+	string accountNo = 2;
 	string name = 3;
 	float balance = 4;
 	int32 customerId = 5;
@@ -72,3 +76,12 @@ message GetAccountReply {
 	int32 userId = 10;
 }
 
+message AccountBalanceChangedRequest {
+	int32 accountId = 1;
+	double delta = 2;
+	int32 userId = 3;
+}
+ 
+message Empty {
+
+}

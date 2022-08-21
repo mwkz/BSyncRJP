@@ -17,6 +17,20 @@ namespace BS.Transactions.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
 
+            modelBuilder.Entity("BS.Transactions.Core.Models.AccountBalance", b =>
+                {
+                    b.Property<int>("AccountId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AccountId");
+
+                    b.ToTable("AccountBalance", (string)null);
+                });
+
             modelBuilder.Entity("BS.Transactions.Core.Models.AccountTransaction", b =>
                 {
                     b.Property<long>("Id")
@@ -49,6 +63,22 @@ namespace BS.Transactions.Infrastructure.Migrations
                     b.HasIndex("AccountId");
 
                     b.ToTable("AccountTransaction", (string)null);
+                });
+
+            modelBuilder.Entity("BS.Transactions.Core.Models.AccountTransaction", b =>
+                {
+                    b.HasOne("BS.Transactions.Core.Models.AccountBalance", "AccountBalance")
+                        .WithMany("Transactions")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AccountBalance");
+                });
+
+            modelBuilder.Entity("BS.Transactions.Core.Models.AccountBalance", b =>
+                {
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

@@ -24,7 +24,7 @@ namespace BS.Accounts.Infrastructure.Services
         public GetAccountService(IEnumerable<IValidator<GetAccountRequest>> validators,
                                               IAccountsUnitOfWork accountsUnitOfWork,
                                               IMapper mapper,
-                                              ILogger logger) 
+                                              ILogger<GetAccountService> logger) 
             : base(validators, logger)
         {
             this.accountsUnitOfWork = accountsUnitOfWork;
@@ -36,7 +36,7 @@ namespace BS.Accounts.Infrastructure.Services
             var account = await accountsUnitOfWork.Accounts.Get()
                                                   .AsNoTracking()
                                                   .Where(a => a.Id == request.Request.AccountId)
-                                                  .FirstOrDefaultAsync(token);
+                                                  .FirstOrDefaultAsync(token).ConfigureAwait(false);
 
             return mapper.Map<Account?, GetAccountResponse?>(account);
         }

@@ -14,7 +14,8 @@ namespace BS.Transactions.Infrastructure.Profiles
         public AccountTransactionProfile()
         {
             CreateMap<AccountTransaction, AddAccountTransactionResponse>();
-            CreateMap<GetAccountTransactionsResponse, AccountTransaction>();
+            CreateMap<AccountTransaction, GetAccountTransactionsResponse>();
+            CreateMap<AddAccountTransactionRequest, AccountTransaction>();
         }
     }
 }

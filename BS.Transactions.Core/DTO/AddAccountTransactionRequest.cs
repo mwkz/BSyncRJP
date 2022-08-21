@@ -12,5 +12,7 @@ namespace BS.Transactions.Core.DTO
 
         public decimal Value { get; set; }
 
+        public bool IsInitial { get; set; } = false;
+
     }
 }

@@ -11,5 +11,6 @@ namespace BS.Transactions.Core.Repositories
     public interface IAccountsTransactionsUnitOfWork : IUnitOfWork
     {
         IAccountsTransactionsRepository AccountsTransactions { get; }
+        IRepository<AccountBalance> AccountsBalances { get;  }
     }
 }

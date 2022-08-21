@@ -18,8 +18,8 @@ namespace BS.Common.Infrastructure.Services
             Logger = logger;
         }
 
-        public IEnumerable<IValidator<Request>> Validators { get; }
-        public ILogger Logger { get; }
+        protected IEnumerable<IValidator<Request>> Validators { get; }
+        protected ILogger Logger { get; }
 
         public async Task<BusinessServiceResponse<Response>> Execute(BusinessServiceRequest<Request> request, CancellationToken token = default)
         {
@@ -39,8 +39,16 @@ namespace BS.Common.Infrastructure.Services
                 }
             }
 
-            var response =  await ExecuteRequest(request, token);
-            return new BusinessServiceResponse<Response>(response, succeeded, validation);
+            if (succeeded)
+            { 
+                var response = await ExecuteRequest(request, token).ConfigureAwait(false);
+                return new BusinessServiceResponse<Response>(response, succeeded, validation);
+            }
+            else
+            {
+                return new BusinessServiceResponse<Response>(default, succeeded, validation);
+            }
+
         }
 
         /// <summary>

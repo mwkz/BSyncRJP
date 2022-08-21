@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BS.Accounts.Core.Clients;
 using BS.Accounts.Core.DTO;
 using BS.Accounts.Core.Models;
 using BS.Accounts.Core.Repositories;
@@ -18,15 +19,18 @@ namespace BS.Accounts.Infrastructure.Services
     public class AddAccountService : BusinessService<AddAccountRequest, AddAccountResponse>, IAddAccountService
     {
         private readonly IAccountsUnitOfWork accountsUnitOfWork;
+        private readonly IAccountsTransactionsServiceClient transactionsServiceClient;
         private readonly IMapper mapper;
 
         public AddAccountService(IEnumerable<IValidator<AddAccountRequest>> validators,
                                     IAccountsUnitOfWork accountsUnitOfWork,
+                                    IAccountsTransactionsServiceClient transactionsServiceClient,
                                     IMapper mapper,
-                                    ILogger logger) 
+                                    ILogger<AddAccountService> logger) 
             : base(validators, logger)
         {
             this.accountsUnitOfWork = accountsUnitOfWork;
+            this.transactionsServiceClient = transactionsServiceClient;
             this.mapper = mapper;
         }
 
@@ -44,8 +48,9 @@ namespace BS.Accounts.Infrastructure.Services
                 accountsUnitOfWork.Accounts.Add(account);
                 await accountsUnitOfWork.SaveChanges(token);
 
-                //                if (request.InitialBalance != 0)
-                //Request add transaction
+
+                //This should be fire and foreget
+                await transactionsServiceClient.NotifyAccountAdded(account.Id, request.Request.InitialBalance, request.UserId, token);
 
                 await transaction.Complete(token);
                 return mapper.Map<Account, AddAccountResponse>(account);                

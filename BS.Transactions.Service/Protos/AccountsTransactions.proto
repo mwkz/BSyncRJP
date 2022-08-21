@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 
+
 option csharp_namespace = "BS.Transactions.Service";
 
 package accounts_transactions;
@@ -9,7 +10,15 @@ package accounts_transactions;
 service AccountsTransactions {
 	rpc AddAccountTransaction (AddAccountTransactionRequest) returns (AddAccountTransactionResponse);
 	rpc GetAccountTransactions (GetAccountTransactionsRequest) returns (GetAccountTransactionsResponse);
+	rpc NewAccountAdded (NewAccountAddedRequest) returns(Empty);
 }
+
+message NewAccountAddedRequest {
+	int32 accountId = 1;
+	double initialBalance = 2; 
+	int32 userID = 3;
+}
+
 
 message AddAccountTransactionRequest {
 	int32 userId = 1;
@@ -27,6 +36,8 @@ message AddAccountTransactionResponse {
 	google.protobuf.Timestamp createdDate = 7;
 	int32 updatedByUserId = 8;
 	google.protobuf.Timestamp updatedDate = 9;
+	bool success = 10;
+	repeated string errors = 11;
 }
 
 message GetAccountTransactionsRequest {
@@ -48,5 +59,9 @@ message GetAccountTransactionsResponse {
 		int32 updatedByUserId = 7;
 		google.protobuf.Timestamp updatedDate = 8;
 	}
+
+}
+
+message Empty {
 
 }

@@ -18,7 +18,9 @@ namespace BS.Transactions.Infrastructure.Repositories
 
         public IQueryable<AccountTransaction> GetAccountTransactions(int accountId)
         {
-            throw new NotImplementedException();
+            return DbContext.Set<AccountTransaction>()
+                            .AsNoTracking()
+                            .Where(item => item.AccountId == accountId);
         }
     }
 }

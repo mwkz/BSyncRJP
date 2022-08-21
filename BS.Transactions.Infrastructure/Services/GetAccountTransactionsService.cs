@@ -34,7 +34,7 @@ namespace BS.Transactions.Infrastructure.Services
         protected override async Task<IEnumerable<GetAccountTransactionsResponse>> ExecuteRequest(BusinessServiceRequest<GetAccountTransactionsRequest> request, CancellationToken token = default)
         {
             var transactions = await accountsTransactionsUnitOfWork.AccountsTransactions.GetAccountTransactions(request.Request.AccountId)
-                                                             .AsNoTracking().ToListAsync(token);
+                                                             .AsNoTracking().ToListAsync(token).ConfigureAwait(false);
 
             return mapper.Map<IEnumerable<AccountTransaction>, IEnumerable<GetAccountTransactionsResponse>>(transactions);
         }

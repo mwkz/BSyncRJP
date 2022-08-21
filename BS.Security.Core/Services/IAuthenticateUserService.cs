@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BS.Security.Core.Services
 {
-    public interface IGetUserService : IBusinessService<GetUserRequest, GetUserResponse?>
+    public interface IAuthenticateUserService : IBusinessService<AuthenticateUserRequest, AuthenticateUserResponse>
     {
 
     }

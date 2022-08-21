@@ -23,6 +23,11 @@ namespace BS.Accounts.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AccountNo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
                     b.Property<decimal>("Balance")
                         .HasColumnType("TEXT");
 
@@ -47,6 +52,9 @@ namespace BS.Accounts.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountNo")
+                        .IsUnique();
 
                     b.ToTable("Account", (string)null);
                 });
